@@ -17,11 +17,9 @@ let pokemonList = [
                     }
                  ];
 
-//looping through the array list of pokemons, printing out the name and height.
-for (let i = 0; i < pokemonList.length; i++) {
-  if (pokemonList[i].height > 1) {
-    document.write(pokemonList[i].name + " (height: " + pokemonList[i].height + ") " + " - Wow, that’s big! " + "<br>");
-  } else {
-    document.write(pokemonList[i].name + " (height: " + pokemonList[i].height + ") " + "<br>");
-  }
-}
+//looping through the array list of pokemons using foreach(), printing out the name and height.
+pokemonList.forEach(function(pokemon){
+    document.write("<p> Name: </p>" + pokemon.name + " " +
+                  " <p> height: </p>" + pokemon.height + " " +
+                  " <p> Type: </p>" + pokemon.type + "<br>");
+});
