@@ -26,7 +26,11 @@ var pokemonRepository = (function() {
     }
 
     function add(item) {
-      pokemonList.push(item);
+      if(typeof item === "object" && item.hasOwnProperty('name', 'height', 'type')) {
+          pokemonList.push(item);
+      } else {
+        alert("Input is not an object");
+      }
     }
 
 // the return object has reference to the local functions in the IIEF
@@ -35,6 +39,8 @@ var pokemonRepository = (function() {
       add: add
     };
 }) ();
+
+console.log(pokemonRepository.add( { name: "pikatchu", height: 2.0, type: ["fire"]} ));
 
 //looping through the array list of pokemons using foreach(), printing out the name and height.
 pokemonRepository.getAll().forEach((item) => {
