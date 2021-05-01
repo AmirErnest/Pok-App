@@ -2,49 +2,68 @@
 //whatever will be returned from it will be the content of the pokemon repository
 // only what is returned  at the end of the IIEF, is what can be accessed when pokemonRepo is mentioned.
 
-var pokemonRepository = (function() {
-  let pokemonList = [
-      {
-        name: "Charmeleon",
-        height: 1.1,
-        type: ["fire"]
-      },
-      {
-        name: "Raichu",
-        height: 0.8,
-        type: ["electric"]
-      },
-      {
-        name: "Rhyhorn",
-        height: 1,
-        type: ["rock", "ground"]
-      }
-    ];
+let pokemonRepository = (function () {
+  let repository = [
+    {
+      name: "Bulbasaur",
+      height: 0.7,
+      types: ["grass", "poison"],
+    },
+    {
+      name: "Charizard",
+      height: 1.7,
+      types: ["fire", "flying"],
+    },
+    {
+      name: "Squirtle",
+      height: 1,
+      types: ["water"],
+    },
+  ];
 
-    function getAll() {
-      return pokemonList;
+  function add(pokemon) {
+    if (typeof pokemon === "object" && "name" in pokemon && "height" in pokemon && "types" in pokemon) {
+      repository.push(pokemon);
+    } else {
+      console.log("pokemon is not correct");
     }
+  }
 
-    function add(item) {
-      if(typeof item === "object" && item.hasOwnProperty('name', 'height', 'type')) {
-          pokemonList.push(item);
-      } else {
-        alert("Input is not an object");
-      }
-    }
+  function getAll() {
+    return repository;
+  }
+
+  function addListItem(pokemon){
+    let pokemonList = document.querySelector(".pokemon-list");
+    let listpokemon = document.createElement("li");
+    let button = document.createElement("button");
+    button.innerText = pokemon.name;
+    button.classList.add("button-class");
+    listpokemon.appendChild(button);
+    pokemonList.appendChild(listpokemon);
+
+    //add event listener when button is clicked 
+    button.addEventListener('click', function(event) {
+      showDetails(pokemon);
+    });
+  }
+//show details of a pokemon in the console.
+  function showDetails(pokemon){
+    console.log(pokemon);
+  }
 
 // the return object has reference to the local functions in the IIEF
-    return {
-      getAll: getAll,
-      add: add
-    };
-}) ();
+return {
+  add: add,
+  getAll: getAll,
+  addListItem: addListItem,
+  showDetails: showDetails
+};
+})();
 
-console.log(pokemonRepository.add( { name: "pikatchu", height: 2.0, type: ["fire"]} ));
+pokemonRepository.add({ name: "Pikachu", height: 0.3, types: ["electric"] });
 
-//looping through the array list of pokemons using foreach(), printing out the name and height.
-pokemonRepository.getAll().forEach((item) => {
-  document.write( "<p> Name: </p>" + item.name + " " +
-                  "<p> height: </p>" + item.height + " " +
-                  "<p> Type: </p>" + item.type + "<br>");
+//looping through the array list of pokemons using foreach().
+pokemonRepository.getAll().forEach(function (pokemon) {
+  pokemonRepository.addListItem(pokemon);
 });
