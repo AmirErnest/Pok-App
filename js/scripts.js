@@ -67,9 +67,74 @@ let pokemonRepository = (function () {
 
   function showDetails(item) {
     pokemonRepository.loadDetails(item).then(function () {
-      console.log(item);
+      showModal(item);
     });
   }
+
+  //global variable
+  let modalContainer = document.querySelector('#modal-container');
+
+  // modal function
+  function showModal(item) {
+    //clear all modal content
+    modalContainer.innerHTML = '';
+
+    //modal div
+    let modal = document.createElement('div');
+    modal.classList.add('modal');
+
+    //close button
+    let closeButtonElement = document.createElement('button');
+    closeButtonElement.classList.add('modal-close');
+    closeButtonElement.innerText = 'X';
+    closeButtonElement.addEventListener('click', hideModal);
+
+    //Pokemon name
+    let nameElement = document.createElement('h1');
+    nameElement.innerText = item.name;
+
+    //pokemon types
+    //let pokTypes = document.createElement('h2');
+    //pokTypes.innerText = "Type(s): " + item.types;
+
+    //Pokemon height
+    let heightElement = document.createElement('h3');
+    heightElement.innerText = "height: " + item.height;
+
+    //pokemon image
+    let pokImage = document.createElement('img');
+    pokImage.src = item.imageUrl;
+
+    //append all elements created to the modal
+    modal.appendChild(closeButtonElement);
+    modal.appendChild(nameElement);
+    //modal.appendChild(pokTypes);
+    modal.appendChild(heightElement);
+    modal.appendChild(pokImage);
+    modalContainer.appendChild(modal);
+
+    modalContainer.classList.add('is-visible');
+  }
+
+  function hideModal() {
+    modalContainer.classList.remove('is-visible');
+  }
+
+  //The Esc-key scenario, then, can be implemented this way, only hiding the modal if it’s actually visible
+  window.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape' && modalContainer.classList.contains('is-visible')) {
+    hideModal();
+    }
+  });
+  //close the modal when mouse is pressed outside the modal
+  modalContainer.addEventListener('click', (e) => {
+  // Since this is also triggered when clicking INSIDE the modal
+  // We only want to close if the user clicks directly on the overlay
+  let target = e.target;
+  if (target === modalContainer) {
+    hideModal();
+    }
+  });
 
 // the return object has reference to the local functions in the IIEF
 return {
