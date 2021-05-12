@@ -7,6 +7,19 @@ body {
   color: blue;
 }
 
+h1 {
+  border: 1px solid grey;
+  border-radius: 50%;
+}
+
+h2, h3 {
+  color: black;
+}
+
+h4 {
+  color: green;
+}
+
 p {
   color:red;
   margin: 0;
@@ -34,6 +47,7 @@ p {
 
 .title {
   text-align: center;
+  border: none;
 }
 
 .pokemon-list {

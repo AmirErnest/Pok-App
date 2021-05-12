@@ -58,8 +58,19 @@ let pokemonRepository = (function () {
     }).then(function (details) {
       // Now we add the details to the item
       item.imageUrl = details.sprites.front_default;
+      item.imageUrlBack = details.sprites.back_default;
       item.height = details.height;
-      item.types = details.types;
+      //pokemon types
+      item.types = [];
+      for (var i=0; i < details.types.length; i++) {
+        item.types.push(details.types[i].type.name);
+      }
+      //pokemon abilities
+      item.abilities = [];
+      for (var i=0; i < details.abilities.length; i++) {
+        item.abilities.push(details.abilities[i].ability.name);
+      }
+
     }).catch(function (e) {
       console.error(e);
     });
@@ -94,23 +105,33 @@ let pokemonRepository = (function () {
     nameElement.innerText = item.name;
 
     //pokemon types
-    //let pokTypes = document.createElement('h2');
-    //pokTypes.innerText = "Type(s): " + item.types;
+    let pokTypes = document.createElement('h3');
+    pokTypes.innerText = "Type(s): " + item.types;
+
+    //pokemon abilities
+    let pokAbilities = document.createElement('p');
+    pokAbilities.innerText = "Abilities: " + item.abilities;
 
     //Pokemon height
-    let heightElement = document.createElement('h3');
+    let heightElement = document.createElement('h4');
     heightElement.innerText = "height: " + item.height;
 
     //pokemon image
     let pokImage = document.createElement('img');
     pokImage.src = item.imageUrl;
 
+    //pokemon image
+    let pokImageBack = document.createElement('img');
+    pokImageBack.src = item.imageUrlBack;
+
     //append all elements created to the modal
     modal.appendChild(closeButtonElement);
     modal.appendChild(nameElement);
-    //modal.appendChild(pokTypes);
+    modal.appendChild(pokTypes);
+    modal.appendChild(pokAbilities);
     modal.appendChild(heightElement);
     modal.appendChild(pokImage);
+    modal.appendChild(pokImageBack);
     modalContainer.appendChild(modal);
 
     modalContainer.classList.add('is-visible');
