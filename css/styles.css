@@ -1,109 +1,65 @@
-* {
-    box-sizing: border-box
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@500&family=RocknRoll+One&display=swap');
+
+:root {
+  --white: #ffffff;
+  --gray-dark: #343a40;
+  --danger: #dc3545;
+  --yellow: #ffc107;
+  --font: 'Quicksand', sans-serif;
 }
 
 body {
-  font-size: 24px;
-  color: blue;
+  background-color: var(--gray-dark);
+  color: var(--h1color);
+  font-family: var(--font);
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 1.6;
+  text-align: center;
+  margin: 20px;
 }
 
-h1 {
-  border: 1px solid grey;
-  border-radius: 50%;
+ul {
+  list-style: none;
 }
 
-h2, h3 {
-  color: black;
+.modal-title {
+  color: var(--danger);
 }
 
-h4 {
-  color: green;
+.list-group {
+  margin: 10px;
+  margin-top: 40px;
 }
 
-p {
-  color:red;
-  margin: 0;
-}
-
-.button-class {
-  background-color: #4caf50; /* Green */
+.list-group-item {
   border: none;
-  color: white;
-  padding: 16px 32px;
+  width: 100%;
+  padding: 12px 28px;
+  font-family: inherit;
+  color: var(--danger);
   text-align: center;
   text-decoration: none;
-  list-style: none;
   display: inline-block;
-  width:100%;
-  font-size: 16px;
+  font-size: 20px;
+  font-weight: bold;
   margin: 4px 2px;
   -webkit-transition-duration: 0.4s; /* Safari */
   transition-duration: 0.4s;
   cursor: pointer;
-  background-color: white;
-  color: black;
-  border: 2px solid #4caf50;
+  background-color: var(--gray-dark);
+  border: 2px solid var(--danger);
+  border-color: var(--danger);
+  border-radius: 5px;
 }
 
-.title {
-  text-align: center;
-  border: none;
+button.btn.btn-block {
+  font-size: 18px;
+  font-weight: bold;
+  padding: 2px 4px;
+  background-color: var(--white);
 }
 
-.pokemon-list {
-  text-decoration: none;
-  list-style: none;
-  max-width: 800px;
-  margin: 0 auto;
-}
-
-#modal-container {
-  position: fixed;
-  padding: 20px;
-  box-sizing: border-box;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0, 0, 0, 0.5);
-
-  /* to show it above other content */
-  z-index: 999;
-
-  /* to allow scrolling if the screen is not high enough*/
-  overflow: auto;
-
-  /* this is used to center the modal */
-  display: grid;
-  text-align: center;
-}
-
-.modal {
-  margin: auto;
-  display: inline-block;
-  box-sizing: border-box;
-  background: #fff;
-  padding: 15px;
-  width: 100%;
-  max-width: 700px;
-  text-align: center;
-  border-radius: 10px;
-}
-
-.modal-close {
-  float: right;
-  -webkit-appearance: none;
-  border: 0;
-  background: none;
-  color: #777;
-  text-decoration: underline;
-  cursor: pointer;
-}
-
-#modal-container {
-  display: none;
-}
-
-#modal-container.is-visible {
-  display: block;
+#pokemonModal {
+  color: var(--h5color);
 }
